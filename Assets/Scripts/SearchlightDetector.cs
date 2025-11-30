@@ -29,6 +29,12 @@ public class SearchlightDetector : MonoBehaviour
     // cover-layer object is found. Use the Inspector to select the layer(s).
     public float coverCheckRadius = 0.2f;
     public LayerMask coverLayer;
+    // Optional tag name fallback for cover objects. If this tag is not defined
+    // in the project's Tag Manager, the code will warn once and not use the tag.
+    public string coverTag = "Cover";
+
+    // Internal: only warn once if the configured coverTag isn't defined.
+    private bool coverTagWarningLogged = false;
 
     private PlayerStats playerStats;
     private LevelManager levelManager;
@@ -41,6 +47,16 @@ public class SearchlightDetector : MonoBehaviour
         // Collider2D on the same GameObject.
         if (beamCollider == null)
             beamCollider = GetComponent<Collider2D>();
+
+        // If coverLayer wasn't configured, try to default to a layer named "Cover".
+        if (coverLayer.value == 0)
+        {
+            coverLayer = LayerMask.GetMask("Cover");
+            if (coverLayer.value != 0)
+                Debug.Log($"SearchlightDetector: defaulted coverLayer to layer 'Cover' for detector '{name}'.");
+            else
+                Debug.LogWarning($"SearchlightDetector: coverLayer is not set on detector '{name}'. Crates will only block detection if player is crouching AND coverLayer or tag 'Cover' is configured.");
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -101,9 +117,31 @@ public class SearchlightDetector : MonoBehaviour
                     if (go == other.gameObject || go.transform.IsChildOf(other.transform))
                         continue;
                     // If the collider's layer is included in the coverLayer mask,
-                    // treat it as cover and ignore the detection.
-                    if ((coverLayer.value & (1 << go.layer)) != 0)
+                    // treat it as cover and ignore the detection. Also accept a
+                    // fallback check: objects tagged 'Cover' are treated as cover
+                    // when the LayerMask hasn't been configured in the Inspector.
+                    bool isCoverByLayer = (coverLayer.value & (1 << go.layer)) != 0;
+                    bool isCoverByTag = false;
+                    if (!string.IsNullOrEmpty(coverTag))
                     {
+                        try
+                        {
+                            isCoverByTag = go.CompareTag(coverTag);
+                        }
+                        catch
+                        {
+                            if (!coverTagWarningLogged)
+                            {
+                                Debug.LogWarning($"SearchlightDetector: tag '{coverTag}' is not defined in Tag Manager. Set up the tag or change SearchlightDetector.coverTag. This warning will only appear once.");
+                                coverTagWarningLogged = true;
+                            }
+                            isCoverByTag = false;
+                        }
+                    }
+
+                    if (isCoverByLayer || isCoverByTag)
+                    {
+                        Debug.Log($"SearchlightDetector: cover detected between detector '{name}' and player via object '{go.name}'. Ignoring detection.");
                         return;
                     }
                 }
