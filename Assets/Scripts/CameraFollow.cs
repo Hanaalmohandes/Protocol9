@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform target;            // Player
+    public Transform target;            // Placyer
     public float smoothSpeed = 5f;
     public BoxCollider2D levelBounds;   // The collider representing the level size
 
