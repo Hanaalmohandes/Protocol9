@@ -60,4 +60,15 @@ if (Input.GetKey(R)) {
     void FixedUpdate(){
         Grounded=Physics2D.OverlapCircle(GroundCheck.position,GroundCheckRadius,WhatIsGround);
     }
+    public void PlaySearchAnimation()
+{
+    anim.SetBool("isSearching", true);
+    StartCoroutine(StopSearch());
+}
+
+private IEnumerator StopSearch()
+{
+    yield return new WaitForSeconds(0.6f); // length of animation
+    anim.SetBool("isSearching", false);
+}
 }
