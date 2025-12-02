@@ -33,7 +33,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -1839,10 +1839,9 @@ TextureImporter:
     nameFileIdTable:
       opps_24: 571782309
       opps_52: 359534675
-      opps_62: 166701
+      opps_70: 1301087901
       opps_20: 660300324
       opps_41: -1805072244
-      opps_70: 1301087901
       opps_21: -1565777941
       opps_3: -479606722
       opps_64: -385579661
@@ -1916,6 +1915,7 @@ TextureImporter:
       opps_50: 1174739022
       opps_61: -561820777
       opps_71: -913366960
+      opps_62: 166701
       opps_17: 615959541
       opps_36: -85760299
       opps_56: -1753842526
