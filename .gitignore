@@ -117,3 +117,5 @@ UserSettings/
 
 /Assets/Plugins/Editor/JetBrains*
 >>>>>>> 6d994b6 (Fix commit state)
+.DS_Store
+Assets/.DS_Store

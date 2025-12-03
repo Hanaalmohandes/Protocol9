@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: ae0fe070fed524e3fb0450f8415eb4c0
+guid: 77133c8c77b76441dbdaa147d68c76a6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,22 +105,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: tileset2_0
+      name: ChatGPT Image Nov 30, 2025 at 06_31_02 PM_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 532
-        height: 532
+        x: 34
+        y: 289
+        width: 960
+        height: 620
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e2d54b0922f0c42d3984b15f8af41b7c
-      internalID: -2082959069
+      spriteID: 223743d72b90c48d7b36f2159a3172ae
+      internalID: -504247942
       vertices: []
       indices: 
       edges: []
@@ -136,7 +136,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      tileset2_0: -2082959069
+      ChatGPT Image Nov 30, 2025 at 06_31_02 PM_0: -504247942
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
